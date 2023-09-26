@@ -1,3 +1,4 @@
+import csv
 class Item:
     """
     Класс для представления товара в магазине.
@@ -5,7 +6,7 @@ class Item:
     pay_rate = 1.0
     all = []
 
-    def __init__(self, name: str, price: float, quantity: int) -> None:
+    def __init__(self, name: str, price: int, quantity: int) -> None:
         """
         Создание экземпляра класса item.
 
@@ -13,10 +14,23 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.name = name
+        if len(name) > 10:
+            name = name[:10]
+        self.__name = name
         self.price = price
         self.quantity = quantity
         self.all.append(self)
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, new_name):
+        if len(new_name) > 10:
+            new_name = new_name[:10]
+        self.__name = new_name
+
 
     def calculate_total_price(self) -> float:
         """
@@ -32,6 +46,19 @@ class Item:
         """
         if self.pay_rate != 0.0 or self.pay_rate != 0:
             self.price *= self.pay_rate
-            return self.price
-        else:
-            return self.price
+
+    @classmethod
+    def instantiate_from_csv(cls, path):
+
+        with open(f'{path}', 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if 'name' and 'price' and 'quantity' in row:
+                    continue
+                else:
+                    cls(row[0], row[1], row[2])
+
+    @staticmethod
+    def string_to_number(number: str) -> int:
+        return int(float(number))
+

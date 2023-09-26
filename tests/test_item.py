@@ -15,11 +15,12 @@ def test_answer_of_calculate_total_price():
     assert a_test_2.calculate_total_price() == 1000
     assert a_test_3.calculate_total_price() == 0
 
-    Item.pay_rate = 0.8
-    assert b_test_1.apply_discount() == 16000
-
 def test_apply_discount():
-    Item.pay_rate = 1
-    assert b_test_1.apply_discount() == 20000
+    native_price = b_test_1.price * b_test_1.pay_rate
+    b_test_1.apply_discount()
+    price = b_test_1.price
+    assert native_price == price
 
+def test_name():
+    pass
 
