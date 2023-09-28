@@ -22,5 +22,17 @@ def test_apply_discount():
     assert native_price == price
 
 def test_name():
-    pass
+    assert a_test_1.name == "Test1"
+    assert a_test_2.name == "Test2"
+    assert a_test_3.name == "Test3"
 
+
+test_len_item = Item('tredcvbnjuytfcvbnm', 2000, 5000)
+
+
+def test_cut_name():
+    assert test_len_item.name == 'tredcvbnju'
+
+
+def test_floats_numbers():
+    assert Item.string_to_number('5.0') == 5
