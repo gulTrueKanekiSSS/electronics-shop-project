@@ -38,10 +38,11 @@ def test_floats_numbers():
     assert Item.string_to_number('5.0') == 5
 
 
-def test__repr__method():
-    item = Item("test", 10000, 20)
-    assert repr(item) == "Item('test', 10000, 20)"
+class TestItemClass:
+    def test__repr__method(self):
+        item = Item("test", 10000, 20)
+        assert repr(item) == "Item('test', 10000, 20)"
 
-def test__str__method():
-    item = Item("test", 10000, 20)
-    assert str(item) == "test"
+    def test__str__method(self):
+        item = Item("test", 10000, 20)
+        assert str(item) == "test"
