@@ -39,10 +39,12 @@ def test_floats_numbers():
 
 
 class TestItemClass:
+    def __init__(self):
+        self.__item = Item("test", 10000, 20)
     def test__repr__method(self):
-        item = Item("test", 10000, 20)
-        assert repr(item) == "Item('test', 10000, 20)"
+        # item = Item("test", 10000, 20)
+        assert repr(self.__item) == "Item('test', 10000, 20)"
 
     def test__str__method(self):
-        item = Item("test", 10000, 20)
-        assert str(item) == "test"
+        # item = Item("test", 10000, 20)
+        assert str(self.__item) == "test"
