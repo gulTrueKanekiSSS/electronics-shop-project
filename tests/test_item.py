@@ -64,3 +64,13 @@ class TestMagicMethodsPhoneClass:
 
         assert phone + item == 21
         assert item + phone == 21
+
+    def test__get__set__methods(self):
+        phone = Phone('iPhone15', 200000, 20, 1)
+        assert phone.number_of_sim == 1
+
+        try:
+            phone.number_of_sim = 0
+        except ValueError:
+            assert 0 == 0
+
