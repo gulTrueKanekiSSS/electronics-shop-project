@@ -28,7 +28,10 @@ class Item:
         return f'{self.__name}'
 
     def __add__(self, other):
-        return self.quantity + other.quantity
+        if isinstance(self, Item) and isinstance(other, Item):
+            return self.quantity + other.quantity
+        else:
+            return 'Один из классом не принадлежит к родительскому классу Item'
 
     @property
     def name(self):
