@@ -1,5 +1,6 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 from src.item import Item
+from src.keyboard import Keyboard
 from src.phone import Phone
 
 
@@ -50,6 +51,14 @@ class TestMagicMethodsItemClass:
         assert str(item) == "test"
 
 
+class TestPhoneClass:
+    phone = Phone('iPhone15', 200000, 20, 1)
+    def test_get_attr(self):
+        assert self.phone.name == 'iPhone15'
+        assert self.phone.price == 200000
+        assert self.phone.quantity == 20
+        assert self.phone.number_of_sim == 1
+
 class TestMagicMethodsPhoneClass:
     def test__str_method(self):
         phone = Phone('iPhone15', 200000, 20, 1)
@@ -73,4 +82,24 @@ class TestMagicMethodsPhoneClass:
             phone.number_of_sim = 0
         except ValueError:
             assert 0 == 0
+
+class TestKeyboardClass:
+    keyboard = Keyboard('Dark Project KD87A', 9600, 5)
+
+    def test_get_attributes(self):
+        assert self.keyboard.name == 'Dark Project KD87A'
+        assert self.keyboard.price == 9600
+        assert self.keyboard.quantity == 5
+
+    def test_change_lang(self):
+        assert str(self.keyboard.language) == 'EN'
+        self.keyboard.change_lang()
+        assert str(self.keyboard.language) == 'RU'
+        self.keyboard.change_lang()
+        assert str(self.keyboard.language) == 'EN'
+        try:
+            self.keyboard.language = 'CH'
+        except AttributeError:
+            assert 1 == 1
+
 
