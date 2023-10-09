@@ -1,5 +1,5 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 from src.keyboard import Keyboard
 from src.phone import Phone
 
@@ -100,6 +100,20 @@ class TestKeyboardClass:
         try:
             self.keyboard.language = 'CH'
         except AttributeError:
+            assert 1 == 1
+
+
+class TestExceptions:
+    def test_is_not_csv_file(self):
+        try:
+            Item.instantiate_from_csv()
+        except FileNotFoundError:
+            assert 1 == 1
+
+    def test_destroyed_csv(self):
+        try:
+            Item.instantiate_from_csv('../src/error.csv')
+        except InstantiateCSVError:
             assert 1 == 1
 
 
